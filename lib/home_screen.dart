@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_crud_op/validator.dart';
+import 'package:firebase_crud_op/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -29,6 +30,9 @@ class _HomePageState extends State<HomePage> {
                 child: CircularProgressIndicator(),
               );
             } else if (snap.hasData) {
+              if(snap.data!.docs.isEmpty){
+                return const Center(child: Text("No Users Found"));
+              }
               return ListView.builder(
                 itemCount: snap.data!.docs.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -215,28 +219,4 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class CustomText extends StatelessWidget {
-  final String title;
-  final String text;
-  const CustomText({Key? key, required this.title, required this.text})
-      : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return Text.rich(
-        style: TextStyle(
-            fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black38),
-        TextSpan(
-            text: title,
-            //style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500, color: Colors.black38),
-            children: <InlineSpan>[
-              TextSpan(
-                text: text,
-                style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black),
-              )
-            ]));
-  }
-}
