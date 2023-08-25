@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_crud_op/validator.dart';
+import 'package:firebase_crud_op/validator/validator.dart';
 import 'package:firebase_crud_op/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 
